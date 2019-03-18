@@ -1,0 +1,33 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: ecosia-service
+spec:
+  selector:
+    app: ecosia
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecosia-deployment
+  labels:
+    app: ecosia
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ecosia
+  template:
+    metadata:
+      labels:
+        app: ecosia
+    spec:
+      containers:
+      - name: ecosia
+        image: stanma/ecosia
+        ports:
+        - containerPort: 3000
