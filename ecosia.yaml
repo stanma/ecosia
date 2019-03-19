@@ -7,7 +7,7 @@ spec:
     app: ecosia
   ports:
   - protocol: TCP
-    port: 3000
+    port: 80
     targetPort: 3000
 ---
 apiVersion: apps/v1
@@ -31,3 +31,16 @@ spec:
         image: stanma/ecosia
         ports:
         - containerPort: 3000
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ecosia-ingress
+spec:
+  rules:
+  - host: local.ecosia.org
+    http:
+      paths:
+      - backend:
+          serviceName: ecosia-service
+          servicePort: 80
