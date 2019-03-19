@@ -1,7 +1,7 @@
 # Ecosia test task
 
-Test: `npm test`
+Run tests: `npm test`
 
-If using minikube: `curl localhost/trees -H Host:local.ecosia.org`
+Deploy (k8s or minikube): run `/bin/sh deploy.sh`
 
-Deploy: run `/bin/sh deploy.sh` and it will deploy app to k8s
+Test: `curl localhost/trees -H Host:local.ecosia.org`
